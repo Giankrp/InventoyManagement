@@ -1,0 +1,28 @@
+package controllers
+
+import (
+	"github.com/Giankrp/inventoryManagement/db"
+	"github.com/Giankrp/inventoryManagement/models"
+)
+
+func GetProductsController() ([]models.ProductResponse,error) {
+	var products []models.Product
+
+	
+	if err := db.Db.Preload("Brand").Find(&products).Error; err != nil {
+		return nil, err
+	}
+
+	var productResponse []models.ProductResponse
+
+	for _, p := range products {
+		productResponse = append(productResponse, models.ProductResponse{
+			Name: p.Name,
+			Price: p.Price,
+			Description: p.Description,
+			Stock: p.Stock,
+			Barcode: p.Barcode,
+		})
+	}
+	return productResponse, nil
+}
