@@ -9,22 +9,20 @@ import (
 	"gorm.io/gorm"
 )
 
-
 var Db *gorm.DB
 
-func DbConnection(){
- godotenv.Load(".env")
+func DbConnection() {
+	godotenv.Load(".env")
 
 	DNS := os.Getenv("DSN")
 
 	var err error
 
-	Db,err = gorm.Open(postgres.Open(DNS), &gorm.Config{})
+	Db, err = gorm.Open(postgres.Open(DNS), &gorm.Config{})
 
 	if err != nil {
 		log.Fatal(err)
-	}else{
+	} else {
 		log.Println("DB Connected")
 	}
-
 }
