@@ -23,9 +23,9 @@ type Product struct {
 	Description string    `json:"description"                                                                validate:"max=500"`
 	Stock       int       `json:"stock"       gorm:"not null"                                                validate:"gte=0"`
 	Barcode     string    `json:"barcode"     gorm:"not null"                                                validate:"required"`
-	BrandID     uint      `json:"brand_id"    gorm:"not null;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	BrandID     uint      `json:"brand_id"    gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	Brand       Brand     `json:"brand"       gorm:"foreignKey:BrandID;"`
-	CategoryID  uint      `json:"category_id" gorm:"not null;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" validate:"required"` 
+	CategoryID  uint      `json:"category_id" gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" validate:"required"` 
 	Category    Category  `json:"category"    gorm:"foreignKey:CategoryID;"`
 }
 

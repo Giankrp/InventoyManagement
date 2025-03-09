@@ -9,10 +9,12 @@ import (
 func Routes(e *echo.Echo) {
 	e.POST("/products", handlers.CreateProductsHandler)
 	e.POST("/brands", handlers.CreateBrandHandler)
+	e.POST("/category", handlers.CreateCategoryHandler)
 	e.GET("/products", handlers.GetProductsHandler)
-	e.GET("products/:id",handlers.GetProductByIdHandler)
+	e.GET("products/:id", handlers.GetProductByIdHandler)
 	e.GET("/products/paginated", handlers.GetPaginatedProductHandler)
 	e.GET("/brands/:id", handlers.GetBrandIdHandler)
+	e.GET("/category", handlers.GetCategoryHandler)
 	e.PUT("/products/:id", handlers.UpdateProductHandler)
 	e.DELETE("/products/:id", handlers.DeleteProductById)
 }

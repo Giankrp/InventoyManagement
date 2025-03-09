@@ -9,7 +9,7 @@ func GetProductsController() ([]models.ProductResponse,error) {
 	var products []models.Product
 
 	
-	if err := db.Db.Preload("Brand").Find(&products).Error; err != nil {
+	if err := db.Db.Preload("Brand").Preload("category").Find(&products).Error; err != nil {
 		return nil, err
 	}
 
@@ -22,6 +22,8 @@ func GetProductsController() ([]models.ProductResponse,error) {
 			Description: p.Description,
 			Stock: p.Stock,
 			Barcode: p.Barcode,
+			BrandName: p.Brand.Name,
+			CategoryName: p.Category.Name,
 		})
 	}
 	return productResponse, nil
